@@ -6,6 +6,9 @@
   const FULL_TIME_HOURS = 8;
   const WAGE_PER_HOUR = 20;
   const NO_OF_WORKING_DAYS=20;
+  const NO_WORK_HRS=160;
+  let totalEmpHr=0;
+  let TotalWorkDays=0;
   let empHrs=0;
   //Get Working Hours function
   function getWorkingHours(empCheck) {
@@ -18,7 +21,7 @@
         return 0;
     }
   }
-    console.log("1.Employee Attendance\n2.Calculate Daily Wage\n3.Get Working \n4.Calculate Employee wage for Month");
+    console.log("1.Employee Attendance\n2.Calculate Daily Wage\n3.Get Working \n4.Calculate Employee wage for Month\n5.Calculate monthly wage till days or hours reached");
     var prompt=require("prompt-sync")();
     let number=prompt("Enter which UC executed  : ");
 switch(number)
@@ -74,5 +77,17 @@ switch(number)
                   let empWage=empHrs*WAGE_PER_HOUR;
                   console.log("Total Hours: "+empHrs+"\nEmp Wage: "+empWage);
               }break;
+//UC 5 Calculate wage till number of working days or total work hours reached.
+              case "5":
+                {
+                  while(totalEmpHr<=NO_WORK_HRS && TotalWorkDays<=NO_OF_WORKING_DAYS)
+                  {
+                    TotalWorkDays++;
+                    let empCheck=Math.floor(Math.random()*10)%3;
+                    totalEmpHr+=getWorkingHours(empCheck);
+                  }
+                  let empWage=totalEmpHr*WAGE_PER_HOUR;
+                  console.log("Total Days: " +TotalWorkDays+"\nTotal Hours: "+totalEmpHr+"\nEmp Wage: "+empWage);
+                }
 }
 }
