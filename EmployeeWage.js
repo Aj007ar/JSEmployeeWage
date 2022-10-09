@@ -1,12 +1,18 @@
 //Welcome to Employee Wage JS programs
 {
+  const IS_PART_TIME = 1;
+  const IS_FULL_TIME = 2;
+  const PART_TIME_HOURS = 4;
+  const FULL_TIME_HOURS = 8;
+  const WAGE_PER_HOUR = 20;
+  let empHrs=0;
+
     console.log("1.Employee Attendance\n2.Calculate Daily Wage\n3.Get Working hours");
     var prompt=require("prompt-sync")();
     let number=prompt("Enter which UC executed  : ");
 switch(number)
 {
-    case "1":
-    
+    case "1":   
     //UC 1 Check employee absent or present
     const IS_PRESENT=1
     const IS_ABSENT=0
@@ -19,13 +25,8 @@ switch(number)
     }
         break;
         case "2":
-    
             console.log("---------UC 2--------------------")
-            const IS_PART_TIME=1;
-            const IS_FULL_TIME=2;
-            const WAGE_PER_HR=20;
             {
-                let empHrs=0;
                 let empCheck=Math.floor(Math.random()*10)%3;
                 switch(empCheck){
                     case 1:
@@ -44,12 +45,6 @@ switch(number)
             break;
             case "3":
                 {
-                    const IS_PART_TIME = 1;
-                    const IS_FULL_TIME = 2;
-                    const PART_TIME_HOURS = 4;
-                    const FULL_TIME_HOURS = 8;
-                    var WAGE_PER_HOUR = 20;
-                  
                     function getWorkingHours(empCheck) {
                       switch (empCheck) {
                         case IS_PART_TIME:
@@ -63,7 +58,7 @@ switch(number)
                     let empCheck = Math.floor(Math.random() * 10) % 3;
                     let empHrs = getWorkingHours(empCheck);
                     let empWage = empHrs * WAGE_PER_HOUR;
-                    console.log("UC3--- Hour:" + empHrs + " EmpWage:" + empWage);
+                    console.log("UC3---> Hours:" + empHrs + "\nEmpWage:" + empWage);
                   }break;
 }
 }
