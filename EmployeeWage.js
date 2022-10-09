@@ -10,6 +10,7 @@
   let totalEmpHr=0;
   let TotalWorkDays=0;
   let empHrs=0;
+  let empDailyWageArr=new Array();
   //Get Working Hours function
   function getWorkingHours(empCheck) {
     switch (empCheck) {
@@ -21,7 +22,12 @@
         return 0;
     }
   }
-    console.log("1.Employee Attendance\n2.Calculate Daily Wage\n3.Get Working \n4.Calculate Employee wage for Month\n5.Calculate monthly wage till days or hours reached");
+  //Function for calculate daily wage
+  function calculateDailyWage(empHrs)
+  {
+    return empHrs*WAGE_PER_HOUR;
+  }
+    console.log("1.Employee Attendance\n2.Calculate Daily Wage\n3.Get Working \n4.Calculate Employee wage for Month\n5.Calculate monthly wage till days or hours reached\n6.Store Daily Wage in Array");
     var prompt=require("prompt-sync")();
     let number=prompt("Enter which UC executed  : ");
 switch(number)
@@ -80,7 +86,7 @@ switch(number)
 //UC 5 Calculate wage till number of working days or total work hours reached.
               case "5":
                 {
-                  while(totalEmpHr<=NO_WORK_HRS && TotalWorkDays<=NO_OF_WORKING_DAYS)
+                  while(totalEmpHr<=NO_WORK_HRS && TotalWorkDays<NO_OF_WORKING_DAYS)
                   {
                     TotalWorkDays++;
                     let empCheck=Math.floor(Math.random()*10)%3;
@@ -88,6 +94,19 @@ switch(number)
                   }
                   let empWage=totalEmpHr*WAGE_PER_HOUR;
                   console.log("Total Days: " +TotalWorkDays+"\nTotal Hours: "+totalEmpHr+"\nEmp Wage: "+empWage);
-                }
+                }break;
+//UC 6 Claculate Wage and store in a Array
+                case "6":
+                  {
+                    while(totalEmpHr<=NO_WORK_HRS && TotalWorkDays<NO_OF_WORKING_DAYS)
+                  {
+                    TotalWorkDays++;
+                    let empCheck=Math.floor(Math.random()*10)%3;
+                    totalEmpHr+=getWorkingHours(empCheck);
+                    empDailyWageArr.push(calculateDailyWage(empHrs));
+                  }
+                  let empWage=calculateDailyWage(totalEmpHr);
+                  console.log("Total Days: "+TotalWorkDays+"\nTotal Hours : "+totalEmpHr+"\nEmp Wage: "+empWage);
+                  }break;
 }
 }
